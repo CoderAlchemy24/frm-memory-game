@@ -1,0 +1,135 @@
+.players-panel{
+    top:-140px;
+    height: 72px;
+    width: fit-content;
+    background-color: var(--grey-50);
+    margin:10px auto;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap:10px;
+    
+}
+
+.player{
+    width:210px;
+    height: 72px;
+   
+    background-color: var(--blue-300);
+    color: var(--blue-800);
+    border-radius:10px;
+    position: relative;
+    overflow: visible;
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2px;
+   
+}
+
+.player.active{
+    background-color: var(--orange-400);
+    
+}
+
+.rectangle{
+    position: absolute;
+    z-index: -3;
+    background-color: var(--blue-100);
+    width: 24px;
+    height: 24px;
+    left: 88px;
+    top: -12px;
+    transform: rotate(45deg);
+    display: none;
+}
+.rectangle.active{
+    display: block;
+    background-color: var(--orange-400);
+    z-index:5;
+    margin-bottom: 90px;
+}
+
+.active .score-panel{
+   
+    
+    margin:auto;
+    padding-top:55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 54px;
+   
+   
+}
+
+.score-panel{
+   
+    
+    margin:auto;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 54px;
+    
+   
+   
+}
+
+.pl-title, .pl-score{
+    width:auto;
+}
+
+
+
+.pl-title{
+    
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:18px;
+    color: var(--blue-400);
+   
+}
+
+.pl-score{
+    
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:32px;
+     color: var(--blue-800);
+    
+}
+
+.pl-score.active, .pl-title.active{
+    color: var(--grey-50)
+}
+.players-panel label{
+    
+    font-size: 13px;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--blue-400);
+    text-transform: uppercase;
+    margin: 26px 0 0px;
+    padding: 6px 6px;
+    display: none;
+   
+}
+
+.players-panel label.current{
+    display: block;
+    color: var(--blue-950);
+   
+}
+

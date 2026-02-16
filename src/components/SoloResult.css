@@ -1,0 +1,166 @@
+.solo-overlay{
+    width: 100vw;
+    height: 100vh;
+    z-index:8;
+    position: fixed;
+    top:0;
+    left:0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(100,100,100,0.75);
+     margin:0 auto;
+}
+
+.solo-result{
+    width: 654px;
+    max-height:510px;
+    background-color: rgba(250,250,250);
+    
+   /*  position: absolute;
+    top: 140px; */
+   
+    z-index:10;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+h2{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:48px;
+    color: var(--blue-950);
+    text-align: center;
+    margin: 40px auto 10px ;
+    padding:0px;
+}
+
+h3 {
+     font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:18px;
+    color: var(--blue-400);
+    text-align: center;
+}
+
+.result-time, .result-moves{
+
+    width:75%;
+    height: 72px;
+    background-color: var(--blue-100);
+    color: var(--blue-400);
+     font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px 40px;
+
+}
+
+.result{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:32px;
+    color: var(--blue-800);
+}
+
+.btns{ margin: 40px auto;
+     width:86%;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+    }
+
+button{
+    width: 310px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: var(--blue-400);
+}
+
+.reset-btn{
+    color:white;
+    background-color: var(--orange-400);
+    
+}
+
+.reset-btn:hover{
+    cursor: pointer;
+    background-color: var(--blue-400);
+    color: white;
+}
+
+.setup-btn{
+    color: var(--blue-800);
+    background-color: var(--blue-100);
+
+}
+
+.setup-btn:hover{
+    color: white;
+    background-color: var(--blue-400);
+    cursor: pointer;
+}
+
+
+@media (max-width: 1200px) {
+    .solo-result{
+        width: 90%;
+        height: 80%;
+       /*  top: 30px;
+        position: sticky; */
+    }
+
+    .result-time, .result-moves{
+        width: 90%;
+    }
+
+    .btns{
+        width: 90%;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    button{
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+   
+
+    .solo-result{
+        width: 95%;
+      /*   height: 90%;
+        position: sticky;
+        top: 0; */
+        margin: auto;
+        
+    }
+
+    .result-time, .result-moves{
+        width: 95%;
+    }
+
+    .btns{
+        width: 95%;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    button{
+        width: 100%;
+    }
+}

@@ -1,0 +1,225 @@
+
+
+.settings{
+     
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      font-weight: 700;
+       width: 654px;
+      height: 689px;
+      margin: 20px auto;
+      
+}
+
+.settings header{
+    background-color: var(--grey-50);
+    margin: 120px auto 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height:108px;
+}
+
+.settings header img{
+    display: block;
+    margin:20px auto;
+    height: 28px;
+    text-align: center;
+}
+ 
+.settings main {
+ 
+     background-color: var(--grey-50);
+      border-radius: 20px;
+      max-width: 545px;
+    background-color: var(--grey-50);
+   
+     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    gap:32px;
+    padding:6%;
+}
+
+section{
+    width:545px;
+    height: 93px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    gap:16px;
+
+}
+
+section label{
+    height:25px;
+    color: var(--blue-400);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-transform: none;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size:20px;
+    line-height: 125%;
+    letter-spacing: 0;
+   
+    
+}
+
+section .btns{
+    margin: auto;
+     width: 545px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+    align-items: center;
+     gap: 32px;
+}
+
+button{
+    border-radius: 26px;
+    background-color: var(--blue-300);
+    color: var(--color-grey-50);
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 125%;;
+    letter-spacing: 0;
+    padding: 4px 24px;
+}
+
+button:hover{
+    background-color: var(--blue-400);
+    cursor: pointer;
+}
+
+
+
+.theme-selector-button{
+    border: none;
+    background-color: var(--blue-300);
+    color: white;
+    width:256px;
+    height: 52px;
+}
+
+.theme-selector-button:focus{
+    background-color: var(--blue-950);
+
+}
+
+.num-of-players-button{
+    border: none;
+    background-color: var(--blue-300);
+    color: white;
+    width:118px;
+    height: 52px;
+}
+
+.num-of-players-button:focus{
+    background-color: var(--blue-950);
+
+}
+
+.size-setting-button{
+     border: none;
+    background-color: var(--blue-300);
+    color: white;
+    width:256px;
+    height: 52px;
+}
+
+.size-setting-button:focus{
+    background-color: var(--blue-950);
+
+}
+
+.btns .active{
+   background-color: var(--blue-950);   
+}
+
+.start-game-button{
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+   width: 545px;
+   height:70px;
+   border: none;
+   border-radius: 35px;
+   background-color: var(--orange-400);
+   color:var(--grey-50)
+}
+
+.start-game-button:hover{
+    background-color: var(--orange-300);
+}
+
+@media screen and (max-width: 1200px) {
+.settings{
+    width: 90vw;
+    height: auto;
+    
+}
+ .settings header{
+    height:80px;
+    margin: 40px auto 10px;
+}
+
+ .settings header img{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 600px){
+.settings{
+    width: 92vw;
+    height: auto;
+}
+
+.settings header{
+    height:80px;
+    margin: 10px auto ;
+}
+
+
+
+.settings main{
+    gap:24px;
+}
+
+.settings main section{
+    width:320px;
+    height: 93px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    gap:16px;
+
+}
+.settings main section .btns{
+    margin: auto;
+     width: 320px;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+    align-items: center;
+     gap: 24px;
+}
+
+.logo-img{
+    height: 40px;
+    margin-bottom:56px;
+}
+
+.start-game-button{
+    width:320px;
+    height: 70px;
+}
+
+
+
+}

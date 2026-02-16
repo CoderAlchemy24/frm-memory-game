@@ -1,0 +1,17 @@
+:root {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-weight: 700;
+
+  --grey-100: rgb(242,242,242);
+  --grey-50: rgb(252,252,252);
+  --blue-950: rgb(21,41,56);
+  --blue-800: rgb(48,72,89);
+  --blue-400: rgb(113, 145, 165);
+  --blue-350: rgb(99,149,184);
+  --blue-300: rgb(188,206,217);
+  --blue-100: rgb(223,231,236);
+  --orange-400: rgb(253, 162, 20);
+  --orange-300: rgb(255,184,74);
+
+}
+

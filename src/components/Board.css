@@ -1,0 +1,505 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body {
+    background-color: var(--grey-50);
+}
+
+.solo-player-board,
+  .multi-player-board{
+    margin: 12px 24px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+  }
+
+header, main, footer {
+
+    margin: 40px auto;;
+    padding: 20px;
+    }
+
+header {
+    
+    height:52px;
+    width: calc(100vw -48px);
+    margin: 24px auto;
+    background-color: var(--grey-50);
+   
+    gap: 40vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+
+header .btns{
+    height:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+  
+}
+
+
+
+button{
+  
+    height: 52px;
+    
+    border: none;
+    font-size:20px;
+   
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-weight: 700;
+
+    
+}
+
+button:hover{
+    background-color: var(--blue-350);
+}
+
+.restart-btn{
+    width:127px;
+    background-color: var(--orange-400);
+    color: var(--grey-50);
+
+}
+
+button.active{
+    background-color: var(--orange-400);
+    color: var(--grey-50);
+}
+
+.new-game-btn{
+   width:149px;
+    background-color: var(--blue-100);
+    color: var(--blue-800);
+}
+
+
+.cards4x4{
+    margin: 50px auto 20px;
+    height:544px;  
+    width: 544px;
+
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(4, 120px);
+    gap: 16px;
+
+    background-color: var(--grey-50);
+}
+
+.cards6x6 {
+    width:572px;
+    height:572px;
+    margin:50px auto 20px ;
+    padding: 20px 10px ;
+     display: grid;
+    grid-template-columns: repeat(6, 90px);
+    grid-template-rows: repeat(6, 90px);
+   
+    gap:16px;
+  
+    background-color: var(--grey-50);
+}
+
+
+ .card{
+    width:102px;
+    height:102px;
+    background-color: var(--blue-800);
+    color: var(--blue-800);
+    border:none;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 64px;
+    margin:0;
+     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cards4x4 > .card{
+    width: 116px;
+    height: 116px;
+    gap: 24px;
+    font-size: 56px;
+}
+
+
+
+.cards6x6 > .card{  /* 82px */
+    width: 102px;
+    height: 102px;
+    gap: 16px
+}
+
+.selected-card{
+    background-color: var(--blue-300);
+    color: var(--grey-50);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.clicked-card{
+    background-color: var(--orange-400);
+    font-size: 44px;
+    color: var(--grey-50);
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.iconcard{
+   
+    background-color: var(--blue-800);
+    fill: var(--blue-800);
+    
+    border:none;
+    border-radius: 50%;
+    margin: 12px;
+   
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cards4x4 > .iconcard{
+    width: 116px;
+    height: 116px;
+    gap: 16px;
+    font-size: 56px;
+}
+
+.cards6x6 > .iconcard{
+    width: 102px;
+    height: 102px;
+    gap: 16px;
+    font-size: 56px;
+}
+
+
+
+.card img{
+    display: none;
+}
+
+.card img.selected-iconcard,
+.card img.clicked-iconcard{
+    display: flex;
+}
+
+.selected-iconcard{
+    background-color: var(--blue-300);
+    color: var(--grey-50);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.clicked-iconcard{
+    background-color: var(--orange-400);
+    font-size: 44px;
+    color: var(--grey-50);
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.solo-player-board footer{
+  width: calc(50%);
+     margin: 40px auto;
+    height: auto;
+    gap: 4px;
+    flex-direction: row;
+     flex-wrap: wrap;
+    display: flex;
+   
+    justify-content: center;
+    align-items: center ;
+}
+
+.solo-player-board footer .solo-results{
+    width:calc(100%);
+    margin: 20px auto;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items:center;
+    gap:10px;
+}
+
+
+.solo-results .result-time, 
+ .solo-results .result-moves{
+   
+    width: 45%;
+    height: 72px;
+    background-color: var(--blue-100);
+    color: var(--blue-800);
+    border-radius:10px;
+}
+
+ 
+
+  footer .players-panel {
+   
+    margin: 30px auto;
+  }
+
+ 
+
+
+/* Laptop breakpoint — középre igazítás */
+@media (max-width: 1200px) {
+
+  .solo-player-board,
+  .multi-player-board{
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header, main, footer {
+
+    margin: 40px auto;;
+    display: flex;
+    
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 48px);
+    text-align: center;
+  }
+
+  .solo-player-board header{
+    margin: 24px auto;
+    flex-wrap: nowrap;
+  }
+
+  .solo-player-board main {
+    margin: 24px auto;
+    flex-wrap: wrap;
+  }
+
+  .solo-player-board  footer {
+    margin: 20px auto;
+    flex-wrap: wrap;
+    width:64%;
+  }
+  
+}
+
+/* Tablet breakpoint — függőleges elrendezésnél is középre */
+@media (max-width: 900px) {
+ 
+  .solo-player-board,
+  .multi-player-board{
+    margin: 12px 24px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  header, main, footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  header {
+    margin: 18px auto;
+    padding: 0 12px;
+     gap: 48%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: calc(100vw - 64px);
+    box-sizing: border-box;
+  }
+
+  main {
+    margin: 18px auto;
+    padding: 0 12px;
+  }
+
+  .solo-player-board footer {
+     width: 80%;
+    margin: 20px auto;
+    
+    
+  }
+ 
+}
+@media (max-width: 600px) {
+
+  .solo-player-board,
+  .multi-player-board{
+    margin: 0px 24px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header {
+    margin: 12px auto;
+    gap: 15vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: calc(100vw - 64px);
+    box-sizing: border-box;
+  }
+
+  .restart-btn{
+    display: none;
+  }
+
+  .btns{
+    margin-right: 0;
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  .cards4x4{
+       margin:12px auto;
+        width: clamp(275px, 70vw, 320px);
+        height: auto;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 4px;
+    }
+
+  .cards6x6 {
+       margin: 12px auto;
+        width: clamp(275px, 80vw, 320px);
+        height: auto;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        gap: 4px;
+    }
+
+  main{
+    margin: 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 64px);
+    box-sizing: border-box;
+  }
+
+  .cards4x4 > .card,
+  .cards4x4 > .iconcard{
+    width: 72px;
+    height: 72px;
+    font-size: 40px;
+    gap: 16px;
+  }
+
+  .cards6x6 > .card,
+  .cards6x6 > .iconcard{
+    width: 54px;
+    height: 54px;
+    font-size: 40px;
+    gap: 16px
+  }
+
+  .info4x4 {
+    margin: 12px auto;
+    width: calc(100vw - 64px);
+    height: auto;
+   
+   
+  }
+
+
+  .solo-player-board footer {
+    width: 100%;
+     margin: 0 auto;
+    height: auto;
+    gap: 4px;
+    flex-direction: column;
+     
+    display: flex;
+   
+    justify-content: center;
+    align-items: center;
+   
+  } 
+
+  .solo-player-board footer .solo-results{
+    width: 100%;
+     margin: 0 auto;
+    height: auto;
+    gap: 4px;
+    flex-direction: column;
+     
+    display: flex;
+   
+    justify-content: center;
+    align-items: center;
+   
+  }
+ .solo-results .result-time,
+ .solo-results .result-moves{
+    width: 96%;
+    height: 72px;
+    background-color: var(--blue-100);
+    color: var(--blue-800);
+    border-radius:10px;
+  }
+ /* .solo-overlay{
+    width: 100%;
+    z-index:8;
+     margin: 20px auto;
+   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+ } */
+ 
+ 
+}
