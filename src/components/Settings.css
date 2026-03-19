@@ -29,12 +29,11 @@
  
 .settings main {
  
-     background-color: var(--grey-50);
-      border-radius: 20px;
-      max-width: 545px;
+    border-radius: 20px;
+    max-width: 545px;
     background-color: var(--grey-50);
    
-     display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-content: space-around;
