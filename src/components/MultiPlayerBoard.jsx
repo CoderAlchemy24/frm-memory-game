@@ -121,20 +121,18 @@ export default function MultiPlayerBoard({
         const isMatch = boardCards[i1] === boardCards[i2];
 
         if (isMatch) {
-          // record matched cards and award point to current player
           setMatchedIndices(prev => [...prev, i1, i2]);
           setScores(prev => {
             const copy = [...prev];
             copy[currentPlayer] = (copy[currentPlayer] || 0) + 1;
             return copy;
           });
-          // currentPlayer stays the same after a match
-        } else {
-          // only advance turn when not a match
-          setCurrentPlayer(prev => (prev + 1) % clampPlayers);
         }
 
-        setClickedIndices([]); // clear selection for next turn
+        const nextPlayer = isMatch ? currentPlayer : (currentPlayer + 1) % clampPlayers;
+        setCurrentPlayer(nextPlayer);
+
+        setClickedIndices([]);
         setIsResolving(false);
       }, 800);
     }
