@@ -87,8 +87,8 @@ export default function Settings({ onStart }) {
           <label htmlFor='btns'>Select Theme:</label>
           <div id="btns" className='btns'>
             
-            <button className='theme-selector-button numbers' onClick={handleButtonClick}>Numbers</button>
-            <button className='theme-selector-button icons active' onClick={handleButtonClick}>Icons</button>
+            <button type="button" className='theme-selector-button numbers' onClick={handleButtonClick}>Numbers</button>
+            <button type="button" className='theme-selector-button icons active' onClick={handleButtonClick}>Icons</button>
             
           </div>
         </section>
@@ -96,22 +96,22 @@ export default function Settings({ onStart }) {
         <section className='players-selection'>
           <label htmlFor='num-of-players'>Number of Players:</label>
           <div id="num-of-players" className='btns'>
-            <button className='num-of-players-button one active' onClick={handleButtonClick}>1</button>
-            <button className='num-of-players-button two' onClick={handleButtonClick}>2</button>
-            <button className='num-of-players-button three' onClick={handleButtonClick}>3</button>
-            <button className='num-of-players-button four' onClick={handleButtonClick}>4</button>
+            <button type="button" className='num-of-players-button one active' onClick={handleButtonClick}>1</button>
+            <button type="button" className='num-of-players-button two' onClick={handleButtonClick}>2</button>
+            <button type="button" className='num-of-players-button three' onClick={handleButtonClick}>3</button>
+            <button type="button" className='num-of-players-button four' onClick={handleButtonClick}>4</button>
           </div>
         </section>
 
         <section className='size-selection'>
           <label htmlFor='size-setting-button'>Grid Size:</label>
           <div id="size-setting-button" className='btns'>
-            <button className='size-setting-button 4x4 active' onClick={handleButtonClick}>4x4</button>
-            <button className='size-setting-button 6x6' onClick={handleButtonClick}>6x6</button>
+            <button type="button" className='size-setting-button 4x4 active' onClick={handleButtonClick}>4x4</button>
+            <button type="button" className='size-setting-button 6x6' onClick={handleButtonClick}>6x6</button>
           </div>
         </section>
 
-        <button className='start-game-button' onClick={handleStart}>Start Game</button>
+        <button type="button" className='start-game-button' onClick={handleStart}>Start Game</button>
       </main>
     </div>
   );
