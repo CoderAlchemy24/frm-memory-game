@@ -118,18 +118,23 @@ export default function MultiPlayerBoard({
       setIsResolving(true);
       setTimeout(() => {
         const [i1, i2] = nextClicked;
-        if (boardCards[i1] === boardCards[i2]) {
+        const isMatch = boardCards[i1] === boardCards[i2];
+
+        if (isMatch) {
+          // record matched cards and award point to current player
           setMatchedIndices(prev => [...prev, i1, i2]);
           setScores(prev => {
             const copy = [...prev];
             copy[currentPlayer] = (copy[currentPlayer] || 0) + 1;
             return copy;
           });
-          // same player's turn after a match
+          // currentPlayer stays the same after a match
+        } else {
+          // only advance turn when not a match
+          setCurrentPlayer(prev => (prev + 1) % clampPlayers);
         }
-        setCurrentPlayer(prev => (prev + 1) % clampPlayers);
-        
-        setClickedIndices([]);
+
+        setClickedIndices([]); // clear selection for next turn
         setIsResolving(false);
       }, 800);
     }

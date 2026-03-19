@@ -11,7 +11,8 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
     const winner = winners[0];
     const winnerScore = scores[allPlayer.indexOf(winner)];
     const notWinners = allPlayer.filter(player => player !== winner);
-    const notWinnerScores = notWinners.map((player )=> {return (scores[allPlayer.indexOf(player)]== 0) ?
+    const notWinnerScores = notWinners.map((player )=> {return (scores[allPlayer.indexOf(player)]=== 0) ?
+
        0 : (scores[allPlayer.indexOf(player)]);})
     return (
       <div className="multiplayer-overlay">
