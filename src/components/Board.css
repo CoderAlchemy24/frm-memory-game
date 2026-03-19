@@ -10,7 +10,7 @@ body {
 .solo-player-board,
   .multi-player-board{
     margin: 12px 24px;
-    padding: 10px 8px;
+    padding: 2px 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,15 +20,15 @@ body {
 
 header, main, footer {
 
-    margin: 40px auto;;
-    padding: 20px;
+    margin: 0px auto 10px;;
+    padding: 10px 20px;
     }
 
 header {
     
     height:52px;
     width: calc(100vw -48px);
-    margin: 24px auto;
+    margin: 14px auto;
     background-color: var(--grey-50);
    
     gap: 40vw;
@@ -105,13 +105,13 @@ button.active{
 .cards6x6 {
     width:572px;
     height:572px;
-    margin:50px auto 20px ;
-    padding: 20px 10px ;
+    margin:20px auto 48px ;
+    padding: 10px ;
      display: grid;
-    grid-template-columns: repeat(6, 90px);
-    grid-template-rows: repeat(6, 90px);
+    grid-template-columns: repeat(6, 86px);
+    grid-template-rows: repeat(6, 86px);
    
-    gap:16px;
+    gap:20px;
   
     background-color: var(--grey-50);
 }

@@ -3,8 +3,8 @@
     height: 72px;
     width: fit-content;
     background-color: var(--grey-50);
-    margin:10px auto;
-    padding: 15px;
+    margin:0px auto 10px;
+    padding: 5px 15px;
 
     display: flex;
     flex-direction: row;
