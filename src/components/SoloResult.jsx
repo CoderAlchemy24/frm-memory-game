@@ -5,7 +5,7 @@ export default function SoloResult({ time, moves, resetGame }) {
     <div className="solo-overlay">
       <div className="solo-result">
         <h2>You did it!</h2>
-        <h3>Game over! Here's how you you got on...</h3>
+        <h3>{`Game over! Here's how you you got on...`}</h3>
 
         <p className='result-time'>Time Elapsed: <span className='result'>{time}</span></p>
         <p className='result-moves'>Moves Taken: <span className='result'>{moves} Moves</span></p>

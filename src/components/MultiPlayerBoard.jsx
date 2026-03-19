@@ -13,7 +13,7 @@ export default function MultiPlayerBoard({
   scores: initialScores = [],
   onSetup
 }) {
-  const images = imagesAll;
+  
 
   const clampPlayers = Math.max(2, Math.min(4, playersCount));
   const generateCards = () => {
@@ -46,11 +46,11 @@ export default function MultiPlayerBoard({
   const [winners, setWinners] = useState([]); // now supports multiple winners
   const [gameOver, setGameOver] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (matchedIndices.length === boardCards.length) {
       
     }
-  }, [matchedIndices, boardCards.length]);
+  }, [matchedIndices, boardCards.length]); */
 
   // When scoresSum reaches the threshold, stop the game and show modal (handle ties)
   useEffect(() => {
@@ -166,27 +166,18 @@ export default function MultiPlayerBoard({
 
       <main className={set4x4 ? 'cards4x4' : 'cards6x6'}>
        
-        {!icons && boardCards && boardCards.map((card, index) => (
-          <BoardCard 
-            card={card} 
-            key={index} 
-            index={index} 
-            matched={matchedIndices} 
-          clicked={clickedIndices} 
+        {boardCards && boardCards.map((card, index) => (
+        <BoardCard
+          card={card}
+          key={card.id ?? index} // prefer unique id; fallback to index if none
+          index={index}
+          matched={matchedIndices}
+          clicked={clickedIndices}
           handleFlipCard={handleFlipCard}
-          icons={icons}/>
-        ))}
-
-        {icons && boardCards && boardCards.map((card, index) => (
-          <BoardCard 
-            card={card} 
-            key={index} 
-            index={index} 
-            matched={matchedIndices} 
-            clicked={clickedIndices} 
-            handleFlipCard={handleFlipCard}
-            icons={icons}/>
-        ))}
+          icons={icons} // pass the flag down; child decides how to use it
+        />
+      ))}
+              
       </main>
  
       <footer>

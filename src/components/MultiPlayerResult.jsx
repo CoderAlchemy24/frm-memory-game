@@ -22,7 +22,7 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
             <h3>Game over! Here are the results...</h3>
           </div>
           <div className="results-board">
-            <p className='winner'>{winner}  (Winner!) <span className='scores'>{winnerScore} Paires</span></p>
+            <p className='winner'>{winner}  (Winner!) <span className='scores'>{winnerScore} Pairs</span></p>
             { notWinners.map((player, index) => (
               <p key={index} className='not-winner'>{player} <span className='scores'>{notWinnerScores[index]>0 ? notWinnerScores[index]: 0} Paires</span></p>
             ))}
@@ -44,7 +44,7 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
     <div className="multiplayer-overlay">
       <div className="multi-result">
         <div className="texts">
-          <h2>It's a tie!</h2>
+          <h2>{`It's a tie!`}</h2>
           <h3>Players with the top score:</h3>
         </div>
         <div className="results-board">
