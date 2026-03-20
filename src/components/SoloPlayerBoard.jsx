@@ -120,27 +120,15 @@ export default function SoloPlayerBoard({
       </header>
 
       <main className={set4x4 ? 'cards4x4' : 'cards6x6'}>
-        {!icons && boardCards && boardCards.map((card, index) => (
+        {boardCards && boardCards.map((card, index) => (
           <BoardCard
             card={card}
-            key={index}
+            key={index}               
             index={index}
             matched={matchedIndices}
             clicked={clickedIndices}
             handleFlipCard={handleFlipCard}
-            icons={icons}
-          />
-        ))}
-
-        {icons && boardCards && boardCards.map((card, index) => (
-          <BoardCard
-            card={card}
-            key={index}
-            index={index}
-            matched={matchedIndices}
-            clicked={clickedIndices}
-            handleFlipCard={handleFlipCard}
-            icons={icons}
+            icons={icons}             
           />
         ))}
       </main>
