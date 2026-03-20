@@ -134,6 +134,10 @@ button.active{
     
 }
 
+  .card:hover{
+    background-color: var(--blue-350);
+  }
+
 .cards4x4 > .card{
     width: 116px;
     height: 116px;
@@ -150,7 +154,7 @@ button.active{
 }
 
 .selected-card{
-    background-color: var(--blue-300);
+  background-color: var(--blue-300);
     color: var(--grey-50);
     display: flex;
     flex-direction: row;
@@ -161,8 +165,10 @@ button.active{
 
 
 .clicked-card{
-    background-color: var(--orange-400);
+  
+  background-color: var(--orange-300);
     font-size: 44px;
+   
     color: var(--grey-50);
     display:flex;
     flex-direction: row;
@@ -172,48 +178,28 @@ button.active{
 
 
 .iconcard{
-   
-    background-color: var(--blue-800);
-    fill: var(--blue-800);
-    
-    border:none;
-    border-radius: 50%;
-    margin: 12px;
-   
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
+  display: none;
+  width: 48%;
+  height: 48%;
+  object-fit: contain;
 }
 
-.cards4x4 > .iconcard{
-    width: 116px;
-    height: 116px;
-    gap: 16px;
-    font-size: 56px;
+.card > .iconcard.is-visible{
+  display: block;
 }
 
-.cards6x6 > .iconcard{
-    width: 102px;
-    height: 102px;
-    gap: 16px;
-    font-size: 56px;
+.cards4x4 > .card > .iconcard{
+  width: 52%;
+  height: 52%;
 }
 
-
-
-.card img{
-    display: none;
-}
-
-.card img.selected-iconcard,
-.card img.clicked-iconcard{
-    display: flex;
+.cards6x6 > .card > .iconcard{
+  width: 48%;
+  height: 48%;
 }
 
 .selected-iconcard{
-    background-color: var(--blue-300);
+  background-color: var(--blue-300);
     color: var(--grey-50);
     display: flex;
     flex-direction: row;
@@ -224,13 +210,23 @@ button.active{
 
 
 .clicked-iconcard{
-    background-color: var(--orange-400);
+  background-color: var(--orange-300);
     font-size: 44px;
     color: var(--grey-50);
     display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.card.selected-card:hover,
+.card.selected-iconcard:hover{
+  background-color: var(--blue-300);
+}
+
+.card.clicked-card:hover,
+.card.clicked-iconcard:hover{
+  background-color: var(--orange-300);
 }
 
 .solo-player-board footer{
@@ -429,20 +425,28 @@ button.active{
     box-sizing: border-box;
   }
 
-  .cards4x4 > .card,
-  .cards4x4 > .iconcard{
+  .cards4x4 > .card{
     width: 72px;
     height: 72px;
     font-size: 40px;
     gap: 16px;
   }
 
-  .cards6x6 > .card,
-  .cards6x6 > .iconcard{
+  .cards6x6 > .card{
     width: 54px;
     height: 54px;
     font-size: 40px;
     gap: 16px
+  }
+
+  .cards4x4 > .card > .iconcard{
+    width: 52%;
+    height: 52%;
+  }
+
+  .cards6x6 > .card > .iconcard{
+    width: 50%;
+    height: 50%;
   }
 
   .info4x4 {

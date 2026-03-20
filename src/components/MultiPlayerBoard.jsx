@@ -123,13 +123,13 @@ export default function MultiPlayerBoard({
         {boardCards && boardCards.map((card, index) => (
         <BoardCard
           card={card}
-          key={card.id ?? index} // prefer unique id; fallback to index if none
+          key={card.id ?? index} 
           index={index}
           matched={matchedIndices}
           clicked={clickedIndices}
           handleFlipCard={handleFlipCard}
-          icons={icons} // pass the flag down; child decides how to use it
-        />
+          icons={icons} 
+          />
       ))}
               
       </main>

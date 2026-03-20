@@ -11,11 +11,7 @@ export default function BoardCard({ card, index, matched, clicked, handleFlipCar
     ? (icons ? 'card clicked-iconcard' : 'card clicked-card')
     : 'card';
 
-  const iconClass = isMatched
-    ? 'iconcard selected-iconcard'
-    : isClicked
-    ? 'iconcard clicked-iconcard'
-    : 'iconcard';
+  const iconClass = isVisible ? 'iconcard is-visible' : 'iconcard';
 
   return (
     <button
