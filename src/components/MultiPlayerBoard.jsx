@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Board.css';
-import imagesAll from './images';
 import PlayersPanel from './PlayersPanel';
 import MultiPlayerResult from './MultiPlayerResult';
 import BoardCard from './BoardCard';
+import {
+  buildPlayersForPanel,
+  cardsMatchAtIndices,
+  clampPlayersCount,
+  createInitialScores,
+  createShuffledDeck,
+  getNextPlayerIndex,
+  getWinnerNames,
+  isBoardComplete,
+} from '../game/gameLogic';
 
 export default function MultiPlayerBoard({
   cards,
@@ -13,72 +22,24 @@ export default function MultiPlayerBoard({
   scores: initialScores = [],
   onSetup
 }) {
-  
-
-  const clampPlayers = Math.max(2, Math.min(4, playersCount));
-  const generateCards = () => {
-   
-    const nums =  set4x4 ? [1,2,3,4,5,6,7,8] : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]  ;
-    const arr = [...nums, ...nums];
-    return arr.sort(() => Math.random() - 0.5);
-  };
-
-  const [boardCards, setBoardCards] = useState(cards && cards.length  ? cards : generateCards());
+  const clampPlayers = clampPlayersCount(playersCount);
+  const [boardCards, setBoardCards] = useState(cards && cards.length  ? cards : createShuffledDeck(set4x4));
   const [matchedIndices, setMatchedIndices] = useState([]);
   const [clickedIndices, setClickedIndices] = useState([]);
   const [isResolving, setIsResolving] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(0);
-  const [scores, setScores] = useState(() => {
-    if (initialScores && initialScores.length) {
-      const s = initialScores.slice(0, clampPlayers);
-      while (s.length < clampPlayers) s.push(0);
-      return s;
-    }
-    return Array.from({ length: clampPlayers }, () => 0);
-  });
-  const [scoresSum, setScoresSum] = useState(0);
-
-  useEffect(() => {
-    setScoresSum(scores.reduce((a, b) => a + b, 0));
-  }, [scores]);
-
-  const [showResult, setShowResult] = useState(false);
-  const [winners, setWinners] = useState([]); // now supports multiple winners
-  const [gameOver, setGameOver] = useState(false);
-
-  /* useEffect(() => {
-    if (matchedIndices.length === boardCards.length) {
-      
-    }
-  }, [matchedIndices, boardCards.length]); */
-
-  // When scoresSum reaches the threshold, stop the game and show modal (handle ties)
-  useEffect(() => {
-    const threshold = set4x4 ? 8 : 18;
-    if (!showResult && scoresSum >= threshold) {
-      setGameOver(true);
-      setIsResolving(true);
-      const maxScore = Math.max(...scores);
-      const winnersIdx = scores
-        .map((s, i) => (s === maxScore ? i : -1))
-        .filter(i => i >= 0);
-      const winnerNames = winnersIdx.map(i => `Player ${i + 1}`);
-      setWinners(winnerNames);
-      setShowResult(true);
-    }
-  }, [scoresSum, set4x4, scores, showResult]);
+  const [scores, setScores] = useState(() => createInitialScores(clampPlayers, initialScores));
+  const gameOver = isBoardComplete(matchedIndices, boardCards);
+  const showResult = gameOver;
+  const winners = gameOver ? getWinnerNames(scores) : [];
 
   const startNewGame = () => {
-    setBoardCards(generateCards());
+    setBoardCards(createShuffledDeck(set4x4));
     setMatchedIndices([]);
     setClickedIndices([]);
     setIsResolving(false);
     setCurrentPlayer(0);
-    setScores(Array.from({ length: clampPlayers }, () => 0));
-    
-    setShowResult(false);
-    setWinners([]);
-    setGameOver(false);
+    setScores(createInitialScores(clampPlayers));
   };
 
   const restartGame = () => {
@@ -86,10 +47,7 @@ export default function MultiPlayerBoard({
     setClickedIndices([]);
     setIsResolving(false);
     setCurrentPlayer(0);
-    setScores(Array.from({ length: clampPlayers }, () => 0));
-    setShowResult(false);
-    setWinners([]);
-    setGameOver(false);
+    setScores(createInitialScores(clampPlayers));
   };
 
   const handleButtonClick = (event) => {
@@ -109,7 +67,7 @@ export default function MultiPlayerBoard({
     if (isResolving) return;
     if (gameOver) return;
     if (clickedIndices.includes(index) || matchedIndices.includes(index)) return;
-    if (matchedIndices.length === boardCards.length) return;
+    if (isBoardComplete(matchedIndices, boardCards)) return;
 
     const nextClicked = [...clickedIndices, index];
     setClickedIndices(nextClicked);
@@ -118,7 +76,7 @@ export default function MultiPlayerBoard({
       setIsResolving(true);
       setTimeout(() => {
         const [i1, i2] = nextClicked;
-        const isMatch = boardCards[i1] === boardCards[i2];
+        const isMatch = cardsMatchAtIndices(boardCards, i1, i2);
 
         if (isMatch) {
           setMatchedIndices(prev => [...prev, i1, i2]);
@@ -129,8 +87,7 @@ export default function MultiPlayerBoard({
           });
         }
 
-        const nextPlayer = isMatch ? currentPlayer : (currentPlayer + 1) % clampPlayers;
-        setCurrentPlayer(nextPlayer);
+        setCurrentPlayer(getNextPlayerIndex({ currentPlayer, isMatch, playersCount: clampPlayers }));
 
         setClickedIndices([]);
         setIsResolving(false);
@@ -147,10 +104,7 @@ export default function MultiPlayerBoard({
     }
   };
 
-  const playersForPanel = Array.from({ length: clampPlayers }, (_, i) => ({
-    player: `Player ${i + 1}`,
-    score: scores[i] || 0
-  }));
+  const playersForPanel = buildPlayersForPanel(scores, clampPlayers);
 
   return (
     <div className='multi-player-board'>
@@ -191,6 +145,7 @@ export default function MultiPlayerBoard({
           <MultiPlayerResult
             winners={winners}
             scores={scores}
+            playersCount={clampPlayers}
             resetGame={resetGameFromModal}
           />
       }

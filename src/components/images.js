@@ -16,7 +16,6 @@ import img15 from '../assets/15.svg';
 import img16 from '../assets/16.svg';
 import img17 from '../assets/17.svg';
 import img18 from '../assets/18.svg';
-import logo from '../assets/logo-dark.svg';
 
 
 const images = { 1: img1, 2: img2, 3: img3, 4: img4, 

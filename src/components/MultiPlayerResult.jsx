@@ -1,19 +1,16 @@
 import './SoloResult.css'
 import './MultiPlayerResult.css'
+import { buildPlayerSummaries, clampPlayersCount } from '../game/gameLogic';
 
-export default function MultiPlayerResult({ winners = [], scores = [], resetGame }) {
-  const allPlayer = [ 'Player 1', 'Player 2', 'Player 3', 'Player 4' ];
-
-
+export default function MultiPlayerResult({ winners = [], scores = [], playersCount = 2, resetGame }) {
+  const visiblePlayers = buildPlayerSummaries(scores, clampPlayersCount(playersCount));
 
   // single winner
   if (winners.length === 1) {
     const winner = winners[0];
-    const winnerScore = scores[allPlayer.indexOf(winner)];
-    const notWinners = allPlayer.filter(player => player !== winner);
-    const notWinnerScores = notWinners.map((player )=> {return (scores[allPlayer.indexOf(player)]=== 0) ?
+    const winnerSummary = visiblePlayers.find((player) => player.player === winner);
+    const notWinners = visiblePlayers.filter((player) => player.player !== winner);
 
-       0 : (scores[allPlayer.indexOf(player)]);})
     return (
       <div className="multiplayer-overlay">
         <div className="multi-result">
@@ -22,9 +19,9 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
             <h3>Game over! Here are the results...</h3>
           </div>
           <div className="results-board">
-            <p className='winner'>{winner}  (Winner!) <span className='scores'>{winnerScore} Pairs</span></p>
-            { notWinners.map((player, index) => (
-              <p key={index} className='not-winner'>{player} <span className='scores'>{notWinnerScores[index]>0 ? notWinnerScores[index]: 0} Paires</span></p>
+            <p className='winner'>{winner}  (Winner!) <span className='scores'>{winnerSummary?.score ?? 0} Pairs</span></p>
+            { notWinners.map((player) => (
+              <p key={player.player} className='not-winner'>{player.player} <span className='scores'>{player.score} Pairs</span></p>
             ))}
           </div>
           <div className="btns">
@@ -36,9 +33,7 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
   } 
 
   // tie ( 2 - 4 winners)
-  const winnerScore = scores[allPlayer.indexOf(winners[0])];
-  const notWinners = allPlayer.filter(player => !winners.includes(player));
-  const notWinnerScores = notWinners.map(player => scores[allPlayer.indexOf(player)]);
+  const notWinners = visiblePlayers.filter((player) => !winners.includes(player.player));
  
   return (
     <div className="multiplayer-overlay">
@@ -48,15 +43,15 @@ export default function MultiPlayerResult({ winners = [], scores = [], resetGame
           <h3>Players with the top score:</h3>
         </div>
         <div className="results-board">
-          {winners.map((player, idx) => {
-            const score = scores[allPlayer.indexOf(player)];
-            return (<div key={idx}>
-              <p className='winner'>{player} <span className='scores'>{score} Paires</span></p>
+          {winners.map((player) => {
+            const summary = visiblePlayers.find((item) => item.player === player);
+            return (<div key={player}>
+              <p className='winner'>{player} <span className='scores'>{summary?.score ?? 0} Pairs</span></p>
             </div>
             );
           })}
-          { notWinners.map((player, index) => (
-            <p key={index} className='not-winner'>{player} <span className='scores'>{notWinnerScores[index]>0? notWinnerScores[index]:0} Paires</span>
+          { notWinners.map((player) => (
+            <p key={player.player} className='not-winner'>{player.player} <span className='scores'>{player.score} Pairs</span>
             </p>
           ))}
         </div>

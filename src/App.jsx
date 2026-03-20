@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Settings from './components/Settings';
-import { createCardsArray } from './components/Settings';
 
 import './App.css'
 
@@ -24,14 +23,9 @@ function App() {
     setCards([]);
   };
 
-  const appStyle = {
-    backgroundColor: started ? 'var(--blue-950)' : 'var(--grey-50)',
-    minHeight: '100vh',
-    };  
-
   return(
     <>
-      {!started && <Settings onStart={handleStart} style={{backgroundColor:'#ff2233'}}/>}
+      {!started && <Settings onStart={handleStart} />}
 
       {started && settings && settings.players === 1 && (
         <SoloPlayerBoard

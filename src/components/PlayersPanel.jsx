@@ -10,6 +10,7 @@ export default function PlayersPanel({ players, activeIndex = 0 }) {
           <div
             className={`player ${isActive ? 'active' : ''} player-${index + 1}`}
             key={index}
+            data-active={isActive ? 'true' : 'false'}
           >
             <div className={`rectangle ${isActive ? 'active' : ''}`}></div>
             <div className="score-panel">

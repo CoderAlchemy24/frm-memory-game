@@ -1,25 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Board.css';
-import imagesAll from './images';
 import SoloResult from './SoloResult';
 import BoardCard from './BoardCard';
+import {
+  cardsMatchAtIndices,
+  createShuffledDeck,
+  formatElapsedTime,
+  isBoardComplete,
+} from '../game/gameLogic';
+
 export default function SoloPlayerBoard({
   cards,
   set4x4 = true,
   icons = true,
   onSetup
 }) {
-  const images = imagesAll;
-
-  const generateCards = () => {
-    const nums = set4x4
-      ? [1,2,3,4,5,6,7,8]
-      : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-    const arr = [...nums, ...nums];
-    return arr.sort(() => Math.random() - 0.5);
-  };
-
-  const [boardCards, setBoardCards] = useState(cards && cards.length ? cards : generateCards());
+  const [boardCards, setBoardCards] = useState(cards && cards.length ? cards : createShuffledDeck(set4x4));
   const [matchedIndices, setMatchedIndices] = useState([]);
   const [clickedIndices, setClickedIndices] = useState([]);
   const [isResolving, setIsResolving] = useState(false);
@@ -27,23 +23,13 @@ export default function SoloPlayerBoard({
   const [moves, setMoves] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const timerRef = useRef(null);
-  const [isTimerRunning, setIsTimerRunning] = useState(true);
-
-
-  const [showResult, setShowResult] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
-
-  useEffect(() => {
-    if (matchedIndices.length === boardCards.length && boardCards.length > 0) {
-     
-      setGameOver(true);
-      setShowResult(true);
-    }
-  }, [matchedIndices, boardCards.length]);
+  const [roundId, setRoundId] = useState(0);
+  const gameOver = isBoardComplete(matchedIndices, boardCards);
+  const showResult = gameOver;
 
   // Timer: start on mount and when a new game starts; stop when gameOver
   useEffect(() => {
-    if (isTimerRunning && !gameOver) {
+    if (!gameOver) {
       timerRef.current = setInterval(() => {
         setSeconds(prev => prev + 1);
       }, 1000);
@@ -54,33 +40,16 @@ export default function SoloPlayerBoard({
         timerRef.current = null;
       }
     };
-  }, [isTimerRunning, gameOver]);
-
-  useEffect(() => {
-    if (gameOver && timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-      setIsTimerRunning(false);
-    }
-  }, [gameOver]);
-
-  const formatTime = (sec) => {
-    const m = Math.floor(sec / 60).toString().padStart(2, '0');
-    const s = (sec % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-  };
+  }, [gameOver, roundId]);
 
   const startNewGame = () => {
-    setBoardCards(generateCards());
+    setBoardCards(createShuffledDeck(set4x4));
     setMatchedIndices([]);
     setClickedIndices([]);
     setIsResolving(false);
     setMoves(0);
     setSeconds(0);
-    setIsTimerRunning(true);
-   
-    setShowResult(false);
-    setGameOver(false);
+    setRoundId(prev => prev + 1);
   };
 
   const restartGame = () => {
@@ -89,9 +58,7 @@ export default function SoloPlayerBoard({
     setIsResolving(false);
     setMoves(0);
     setSeconds(0);
-    setIsTimerRunning(true);
-    setShowResult(false);
-    setGameOver(false);
+    setRoundId(prev => prev + 1);
   };
 
   const handleButtonClick = (event) => {
@@ -111,7 +78,7 @@ export default function SoloPlayerBoard({
     if (isResolving) return;
     if (gameOver) return;
     if (clickedIndices.includes(index) || matchedIndices.includes(index)) return;
-    if (matchedIndices.length === boardCards.length) return;
+    if (isBoardComplete(matchedIndices, boardCards)) return;
 
     const nextClicked = [...clickedIndices, index];
     setClickedIndices(nextClicked);
@@ -122,7 +89,7 @@ export default function SoloPlayerBoard({
       setMoves(prev => prev + 1);
       setTimeout(() => {
         const [i1, i2] = nextClicked;
-        if (boardCards[i1] === boardCards[i2]) {
+        if (cardsMatchAtIndices(boardCards, i1, i2)) {
           setMatchedIndices(prev => [...prev, i1, i2]);
         }
         setClickedIndices([]);
@@ -180,7 +147,7 @@ export default function SoloPlayerBoard({
 
       <footer>
         <div className="solo-results">
-           <div className='result-time'>Time: <span className='result'>{formatTime(seconds)}</span></div>
+            <div className='result-time'>Time: <span className='result'>{formatElapsedTime(seconds)}</span></div>
            <div className='result-moves'>Moves: <span className='result'>{moves}</span></div>
         </div>
       </footer>
@@ -188,7 +155,7 @@ export default function SoloPlayerBoard({
       {   showResult &&  
       (
         <SoloResult
-          time={formatTime(seconds)}
+          time={formatElapsedTime(seconds)}
           moves={moves}
           resetGame={resetGameFromModal}
         />
